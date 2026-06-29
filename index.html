@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>DreadNote</title>
+  <link rel="icon" href="img1.png" type="image/png">
+  <link rel="apple-touch-icon" href="img1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function() {
+      try {
+        if (localStorage.getItem('dn-dark') === '1') {
+          document.documentElement.style.backgroundColor = '#000';
+          document.documentElement.style.colorScheme = 'dark';
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-loading">
+
+  <!-- ログイン画面 -->
+  <section id="view-login" hidden>
+    <div class="login-box">
+      <img src="img1.png" class="login-logo" alt="">
+      <h1>DreadNote</h1>
+      <button id="login-btn">
+        <img src="ios_dark_sq_ctn.svg" alt="Sign in with Google">
+      </button>
+    </div>
+  </section>
+
+  <!-- アプリ本体 -->
+  <div id="view-app" hidden>
+
+    <!-- サイドバー -->
+    <div id="sidebar">
+      <div id="sidebar-top">
+        <button id="sidebar-close">≡</button>
+        <button id="new-chat-btn">＋ 新しいチャット</button>
+      </div>
+      <div id="chat-list-scroll">
+        <div id="pinned-section" hidden>
+          <p class="list-label">📌 ピン留め</p>
+          <ul id="list-pinned"></ul>
+        </div>
+        <ul id="list-normal"></ul>
+      </div>
+      <div id="sidebar-bottom">
+        <div id="user-row">
+          <img id="user-avatar" src="" alt="" hidden>
+          <span id="user-name"></span>
+        </div>
+        <div id="bottom-actions">
+          <button id="go-trash-btn" title="ゴミ箱">🗑️</button>
+          <button id="dark-btn"></button>
+          <button id="logout-btn">ログアウト</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- メインエリア -->
+    <div id="main">
+
+      <!-- モバイル用ヘッダー -->
+      <div id="main-header">
+        <button id="sidebar-toggle">≡</button>
+        <span id="header-title"></span>
+      </div>
+
+      <!-- 空の状態 -->
+      <div id="pane-empty" class="pane">
+        <img src="img1.png" class="empty-logo" alt="">
+        <p>新しいチャットを作成してください</p>
+        <button id="new-chat-btn2">＋ 新しいチャット</button>
+      </div>
+
+      <!-- チャット -->
+      <div id="pane-chat" class="pane">
+        <div id="chat-feed"></div>
+        <div id="input-area">
+          <textarea id="input" placeholder="メモを入力... (Enterで送信)" rows="1"></textarea>
+          <button id="send-btn">↑</button>
+        </div>
+      </div>
+
+      <!-- ゴミ箱 -->
+      <div id="pane-trash" class="pane">
+        <div id="trash-top">
+          <button id="back-from-trash">← 戻る</button>
+          <span>ゴミ箱</span>
+          <button id="empty-trash-btn">全削除</button>
+        </div>
+        <div id="trash-list"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="toast"></div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
